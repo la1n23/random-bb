@@ -7,10 +7,11 @@
         src: url('https://raw.githubusercontent.com/la1n23/random-bb/refs/heads/main/LoveLetter.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
-        font-display: swap;
+        font-display: block;
       }
       html {
         font-family: 'LoveLetter', sans-serif;
+        background-color: #F0F0F0;
       }
       #container {
         display: flex;
@@ -23,13 +24,22 @@
       .link {
         margin-bottom: 1em;
       }
+      header {
+        margin-bottom: 10%;
+      }
+      .target-header {
+        text-align: center;
+      }
+      #random-item {
+        min-height: 200px;
+      }
     </style>
   </head>
   <body>
-    <header>
-      Hey, I'm La1n! And now I'll help your to choose target to hack!
-    </header>
     <div id="container">
+      <header>
+        Hey, I'm La1n! And now I'll help your to choose target to hack!
+      </header>
       <button>Suggest me one</button>
       <div id="random-item"></div>
     </div>
@@ -46,7 +56,7 @@
           const list = res.split('\n').filter(item => item.trim() !== '');
           const random = list[Math.floor(Math.random() * list.length)];
           
-          document.getElementById('random-item').innerHTML = `<h3>↓ Your target is ↓</h3>`;
+          document.getElementById('random-item').innerHTML = `<h3 class="target-header">↓ Your target is ↓</h3>`;
           document.getElementById('random-item').innerHTML += `<div class="link"><a href="${random}" target="_blank">${random}</a></div>`;
           document.getElementById('random-item').innerHTML += 'Redirecting in 5 seconds...';
           

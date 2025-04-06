@@ -1,16 +1,25 @@
 <html>
   <head>
-    <title>La1n Shelter</title>
+    <title>La1n's Shelter</title>
+    <style>
+      #container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
-    <button>I'm feeling lucky</button>
-    <div id="random-item"></div>
+    <div id="container">
+      <button>I'm feeling lucky</button>
+      <div id="random-item"></div>
+    </div>
     <script>
       document.querySelector('button').addEventListener('click', function() {
-        fetch('/list.txt')
+        fetch('https://raw.githubusercontent.com/la1n23/random-bb/refs/heads/main/list.txt')
         .then(res => res.text())
         .then(res => {
-          const list = res.split('\n');
+          const list = res.split('\n').filter(item => item.trim() !== '');
           const random = list[Math.floor(Math.random() * list.length)];
           
           document.getElementById('random-item').innerHTML = `<div><a href="${random}">${random}</a></div>`;

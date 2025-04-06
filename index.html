@@ -2,32 +2,60 @@
   <head>
     <title>La1n's Shelter</title>
     <style>
+      @font-face {
+        font-family: 'LoveLetter';
+        src: url('https://raw.githubusercontent.com/la1n23/random-bb/refs/heads/main/LoveLetter.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      html {
+        font-family: 'LoveLetter', sans-serif;
+      }
       #container {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        margin-bottom: 1em;
+      }
+      .link {
+        margin-bottom: 1em;
       }
     </style>
   </head>
   <body>
+    <header>
+      Hey, I'm La1n! And now I'll help your to choose target to hack!
+    </header>
     <div id="container">
-      <button>I'm feeling lucky</button>
+      <button>Suggest me one</button>
       <div id="random-item"></div>
     </div>
+    <footer>
+      <p>&copy; 2023 La1n's Shelter. We are all connected.</p>
+    </footer>
     <script>
       document.querySelector('button').addEventListener('click', function() {
+        document.getElementById('random-item').innerHTML = '...';
+
         fetch('https://raw.githubusercontent.com/la1n23/random-bb/refs/heads/main/list.txt')
         .then(res => res.text())
         .then(res => {
           const list = res.split('\n').filter(item => item.trim() !== '');
           const random = list[Math.floor(Math.random() * list.length)];
           
-          document.getElementById('random-item').innerHTML = `<div><a href="${random}">${random}</a></div>`;
+          document.getElementById('random-item').innerHTML = `<h3>↓ Your target is ↓</h3>`;
+          document.getElementById('random-item').innerHTML += `<div class="link"><a href="${random}" target="_blank">${random}</a></div>`;
           document.getElementById('random-item').innerHTML += 'Redirecting in 5 seconds...';
           
           setTimeout(() => {
-            window.location.href = random;
+            window.open(random, '_blank');
           }, 5000);
+        })
+        .catch(error => {
+          document.getElementById('random-item').innerHTML = 'Error fetching the list. Please try again.';
         });
       });
     </script>

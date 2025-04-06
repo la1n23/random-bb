@@ -1,6 +1,26 @@
 <html>
-  <head>La1n Shelter</head>
+  <head>
+    <title>La1n Shelter</title>
+  </head>
   <body>
-    test
+    <button>I'm feeling lucky</button>
+    <div id="random-item"></div>
+    <script>
+      document.querySelector('button').addEventListener('click', function() {
+        fetch('/list.txt')
+        .then(res => res.text())
+        .then(res => {
+          const list = res.split('\n');
+          const random = list[Math.floor(Math.random() * list.length)];
+          
+          document.getElementById('random-item').innerHTML = `<div><a href="${random}">${random}</a></div>`;
+          document.getElementById('random-item').innerHTML += 'Redirecting in 5 seconds...';
+          
+          setTimeout(() => {
+            window.location.href = random;
+          }, 5000);
+        });
+      });
+    </script>
   </body>
 </html>

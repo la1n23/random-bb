@@ -64,10 +64,10 @@
           
           document.getElementById('random-item').innerHTML = `<h3 class="target-header">↓ Your target is ↓</h3>`;
           document.getElementById('random-item').innerHTML += `<div class="link"><a href="${random}" target="_blank">${random}</a></div>`;
-          document.getElementById('random-item').innerHTML += 'Redirecting in 5 seconds...';
+          //document.getElementById('random-item').innerHTML += 'Redirecting in 5 seconds...';
           
           setTimeout(() => {
-            window.open(random, '_blank');
+            //window.open(random, '_blank');
           }, 5000);
         })
         .catch(error => {
